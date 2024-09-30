@@ -13,3 +13,6 @@ cloudinary_python.txt
 .venv/
 venv/
 node_modules/
+*.sqlite3
+*.pyc
+__pycache__
