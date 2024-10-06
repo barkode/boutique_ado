@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.account',
     # Optional -- requires install using `django-allauth[socialaccount]`.
     'allauth.socialaccount',
+    'crispy_forms',
+    'crispy_bootstrap4',
     'home',
     'products',
     'bag',
@@ -66,6 +68,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'app.urls'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -82,6 +87,10 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 'bag.contexts.bag_contents',
+            ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
             ],
         },
     },
