@@ -7,6 +7,7 @@ crispy-bootstrap4==2024.10
 decorator==5.1.1
 Django==4.2.16
 django-allauth==65.0.2
+django-countries==7.6.1
 django-crispy-forms==2.3
 executing==2.1.0
 idna==3.10
