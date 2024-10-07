@@ -55,7 +55,7 @@ class StripeWH_Handler:
                     grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
-                    )
+                )
                 order_exists = True
                 break
             except Order.DoesNotExist:
@@ -80,7 +80,7 @@ class StripeWH_Handler:
                     county=shipping_details.address.state,
                     original_bag=bag,
                     stripe_pid=pid,
-                    )
+                )
                 for item_id, item_data in json.loads(bag).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
@@ -88,7 +88,7 @@ class StripeWH_Handler:
                             order=order,
                             product=product,
                             quantity=item_data,
-                            )
+                        )
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():
@@ -97,7 +97,7 @@ class StripeWH_Handler:
                                 product=product,
                                 quantity=quantity,
                                 product_size=size,
-                                )
+                            )
                             order_line_item.save()
             except Exception as e:
                 if order:
