@@ -5,6 +5,7 @@ from products.models import Product
 
 
 def bag_contents(request):
+
     bag_items = []
     total = 0
     product_count = 0
@@ -19,7 +20,7 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
-                })
+            })
         else:
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
@@ -30,7 +31,7 @@ def bag_contents(request):
                     'quantity': quantity,
                     'product': product,
                     'size': size,
-                    })
+                })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
@@ -49,6 +50,6 @@ def bag_contents(request):
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,
-        }
+    }
 
     return context
