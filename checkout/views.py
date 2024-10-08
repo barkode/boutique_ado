@@ -24,7 +24,7 @@ def cache_checkout_data(request):
             'bag': json.dumps(request.session.get('bag', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
-            })
+        })
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
@@ -49,7 +49,7 @@ def checkout(request):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
-            }
+        }
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
@@ -66,7 +66,7 @@ def checkout(request):
                             order=order,
                             product=product,
                             quantity=item_data,
-                            )
+                        )
                         order_line_item.save()
                     else:
                         for size, quantity in item_data['items_by_size'].items():
@@ -75,13 +75,13 @@ def checkout(request):
                                 product=product,
                                 quantity=quantity,
                                 product_size=size,
-                                )
+                            )
                             order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your bag wasn't found in our database. "
                         "Please call us for assistance!")
-                                   )
+                    )
                     order.delete()
                     return redirect(reverse('view_bag'))
 
@@ -104,7 +104,7 @@ def checkout(request):
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
-            )
+        )
 
         # Attempt to prefill the form with any info the user maintains in their profile
         if request.user.is_authenticated:
@@ -120,7 +120,7 @@ def checkout(request):
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
                     'county': profile.default_county,
-                    })
+                })
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
         else:
@@ -135,7 +135,7 @@ def checkout(request):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        }
+    }
 
     return render(request, template, context)
 
@@ -163,7 +163,7 @@ def checkout_success(request, order_number):
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_county': order.county,
-                }
+            }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
@@ -178,6 +178,6 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
-        }
+    }
 
     return render(request, template, context)
