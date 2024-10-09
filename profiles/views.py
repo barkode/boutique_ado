@@ -1,15 +1,13 @@
-from audioop import reverse
-
-from allauth.core.internal.httpkit import redirect
-from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
-
-from .models import UserProfile
-from .forms import UserProfileForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render
 
 from checkout.models import Order
-from products.forms import ProductForm
+from .forms import UserProfileForm
+from .models import UserProfile
 
+
+@login_required
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -33,7 +31,6 @@ def profile(request):
         }
 
     return render(request, template, context)
-
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
