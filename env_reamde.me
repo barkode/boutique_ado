@@ -1,0 +1,29 @@
+DJ_SECRET_KEY: The secret key for Django, used to ensure the security of the application. This should be a unique and random string of a significant length.
+DEBUG: Debug option. Can be set to "True" or "False". The default value is "False". Setting it to "True" will enable the debugging mode, which is not recommended for production environments.
+
+# PostgreSQL database credentials
+DB_NAME: The name of the PostgreSQL database.
+DB_USER: Username used to connect to the PostgreSQL database.
+DB_PASSWORD: Password associated with the PostgreSQL user.
+DB_HOST: The hostname or IP address of the server where the database is hosted.
+DB_PORT: Port number for accessing the PostgreSQL database, typically 5432.
+
+# GitHub OAuth authorization credentials
+SOCIAL_AUTH_GITHUB_KEY: Client ID for GitHub OAuth, used to authenticate users via GitHub.
+SOCIAL_AUTH_GITHUB_SECRET: Client Secret for GitHub OAuth, used in conjunction with the Client ID.
+
+# Cloudinary API credentials
+CLOUD_NAME: Name of your Cloudinary cloud, used to identify your Cloudinary account.
+CLOUD_API_KEY: API Key for accessing Cloudinary resources.
+CLOUD_API_SECRET: Secret API Key for Cloudinary, used alongside the API Key.
+
+# Django Sites framework
+SITE_ID: ID of the site configuration in Django’s sites framework, used for multi-site setups.
+
+# Stripe API credentials
+STRIPE_PUBLIC_KEY: Stripe publishable key, used on the client side for payments.
+STRIPE_SECRET_KEY: Stripe secret key, used server-side for managing Stripe interactions.
+STRIPE_WH_SECRET: Webhook secret for Stripe, used to verify webhook events.
+
+# Default email address
+DEFAULT_FROM_EMAIL: Email address that appears as the sender for automated emails.
