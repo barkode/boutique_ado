@@ -13,6 +13,7 @@ django-allauth==65.0.2
 django-countries==7.6.1
 django-crispy-forms==2.3
 executing==2.1.0
+gunicorn==23.0.0
 idna==3.10
 ipython==8.28.0
 jedi==0.19.1
