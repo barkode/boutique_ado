@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
 
 from dotenv import load_dotenv
 
@@ -28,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJ_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', default='False')
+DEBUG = bool(os.getenv('DEBUG', default='False'))
 
 ALLOWED_HOSTS = [".codeinstitute.net",
                  ".herokuapp.com",
@@ -142,11 +143,15 @@ LOGIN_REDIRECT_URL = '/'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        }
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
 
 AUTH_PASSWORD_VALIDATORS = [
