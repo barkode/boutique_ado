@@ -15,8 +15,6 @@ from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
 
-import custom_storages
-
 # Take environment variables from .env.
 load_dotenv()
 
@@ -204,13 +202,13 @@ if 'USE_AWS' in os.environ:
 
     # Static and media files
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
+    STATICFILES_DIRECTORY = 'static'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media'
+    MEDIAFILES_DIRECTORY = 'media'
 
     # Override static and media URLs in production
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_DIRECTORY}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_DIRECTORY}/'
 
 
 # Stripe
