@@ -16,12 +16,14 @@ django-countries==7.6.1
 django-crispy-forms==2.3
 django-storages==1.14.4
 executing==2.1.0
+flake8==7.1.1
 gunicorn==23.0.0
 idna==3.10
 ipython==8.28.0
 jedi==0.19.1
 jmespath==1.0.1
 matplotlib-inline==0.1.7
+mccabe==0.7.0
 mypy-extensions==1.0.0
 packaging==24.1
 parso==0.8.4
@@ -31,6 +33,8 @@ platformdirs==4.3.6
 prompt_toolkit==3.0.48
 psycopg2==2.9.10
 pure_eval==0.2.3
+pycodestyle==2.12.1
+pyflakes==3.2.0
 Pygments==2.18.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
