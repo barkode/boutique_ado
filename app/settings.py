@@ -122,8 +122,6 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 SITE_ID = int(os.getenv('SITE_ID', default=1))
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -224,4 +222,15 @@ STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', default='')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', default='')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', default='')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', default='<EMAIL>')
+
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = os.getenv('EMAIL_HOST', default='')
+    EMAIL_PORT = os.getenv('EMAIL_PORT', default='')
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', default='')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', default='')
+    DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', default='')
